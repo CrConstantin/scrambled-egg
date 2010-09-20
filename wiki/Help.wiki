@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Detailed help about Scrambled-Egg.
 #labels Featured,Phase-Support,Help
 
 = Introduction =
@@ -12,11 +12,11 @@ The resulted string can be sent on e-mail, or it can be hidden inside an image.
 First of all, Scrambled-Egg is not a text editor, so if you need to format your text, you must use a text processor, then paste the formated text in here. Scrambled-Egg supports HTML, so the formatting will be remembered.
 
 Original text is "scrambled" in 3 steps :
-  * Step 1, Pre : None, ZLIB, BZ2, ROT13
-  * Step 2, Real encryption : AES, Blowfish, CAST, DES3, None
-  * Step 3, Post : Base64, HEX, Quopri, String, UU Codec
+  * Step 1, Pre : No processing, ZLIB, BZ2, or ROT13
+  * Step 2, Real encryption : AES, Blowfish, CAST, DES3, or No encryption
+  * Step 3, Post : Base64, HEX, Quopri, String, or UU Codec
 
-All 3 steps are important, so you should use them.
+All 3 steps are important, so you should use them. Step 3 is mandatory.
 
 ...
 
