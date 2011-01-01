@@ -3,30 +3,42 @@
 
 = Introduction =
 
-Scrambled-Egg will help you compress and encrypt your data.
-The resulted string can be sent on e-mail, or it can be transformed into an image.
+Scrambled-Egg can help you compress and encrypt your data.<br>
+The data can be : plain text, formatted text, or a binary file (currently not supported from GUI).
+The result can be kept/sent as plain text, or as an image.
 
 = Details =
 
-First of all, Scrambled-Egg is not a text editor. If you need scramble formatted text, use a text processor, then paste the formatted text in the left text-box. Scrambled-Egg supports HTML, so the formatting will be remembered upon encryption/ decryption.
+First of all, Scrambled-Egg is not a text editor.<br>
+If you need formatted text, use a text processor, then paste the formatted text in the left text-box.
+Scrambled-Egg supports HTML, so the formatting will be remembered upon encryption/ decryption.
 
 The original data is scrambled in 3 steps :
-  * Step 1, Pre : No processing, ZLIB, BZ2, or ROT13
-  * Step 2, Real encryption : AES, Blowfish, CAST, DES3, or No encryption
-  * Step 3, Post : Base64, HEX, Quopri, String, or UU Codec
+  * Step 1 (pre processing)  : No processing, ZLIB, BZ2, or ROT13
+  * Step 2 (real encryption) : AES, ARC2, Blowfish, CAST, DES3, or No encryption
+  * Step 3 (post processing) : Base64, Base32, HEX, Quopri, String escape, or UU Codec
 
 All 3 steps are important, you should use them all.
-The password is optional, and is used only for step 2 (encryption).
-Only step 3 (post processing) is mandatory, the rest can be "None".
+The password is optional, and it's used only for step 2 (encryption).
+Step 3 (post processing) is mandatory, the rest can be omitted.
 
-The resulted string begins with the text "_<#>pre:encryption:post<#>_", where "_pre_" represents one of the values from Step 1, "_encryption_" is one of the values from Step 2, and "_post_" is a value from Step 3. This tag can be deleted when sending the scrambled data, but it is necessary if you want to know how to decrypt the data back.
-For example, if someone scrambles the data with BZ2 + DES3 + HEX, and you try to decrypt it with ZLIB + DES3 + HEX, it will fail. You will have to try all combinations of decryption, even if you already know the password !
+The resulted string contains a _pre/enc/post tag_ in this form:
+"_<#>pre:encryption:post<#>_", where :
+ * "_pre_" represents one of the values from Step 1,
+ * "_encryption_" is one of the values from Step 2 and
+ * "_post_" is a value from Step 3.
+This tag can be deleted when keeping/sending the scrambled data, but it is important if you don't remember, or don't know _how_ to decrypt the data back.<br>
+For example, if someone scrambles the data with BZ2 + DES3 + HEX, and you try to decrypt it with ZLIB + DES3 + HEX, it will fail. You will have to try all combinations of pre/enc/post operations, even if you already know the password !
 
-...
+= Tips =
 
-A few examples of original text and resulted "scrambled" string :
-  * you *must* destroy the _evidence_! -(password 'dodo')-> #Z:A:H#7939d292fef5a8eda1c27425b004dc7f683b52b96c633631ec8652042ba18c808bc76429dd364ca1fe5143888f1c7f979c119586a39dc3ae30f5ed1d7e160fe329bc85bea7e9f6605c0eab3bcbb1485a8505cada99b6e27265f230e3309a404a61ef5e59fbf0e3d51db8f59d06e13c0b1d8bd0397a843399e94494aca973e1763b23d83e9223ab84326a4d826247a863
-  * no-one will know about your secret -(password 'phoenix')-> ...
-  * Lorem ipsum dolor sit amet, ( ... ) Suspendisse potenti. (this text has 4025 characters) --> The resulted string has 2000 characters with BZ2/ AES/ Base64.
+  * Don't use Quopri Codec with binary files (images, music, Doc/Xls files, executables). The result after decoding might be differend from the original file !
+  * Base32 Codec is VERY slow, so don't use it for large files.
+  * The GUI will freeze for a looong time if you try to encrypt/ decrypt more than 200.000-300.000 characters !
+  * The most common passwords are : 111111, 123456, 123456789, Password, iloveyou, princess, rockyou, abc123, Querty. Don't use common passwords for protecting your data.
 
-... to complete ...
+= A few examples =
+
+  * you *must* destroy the _evidence_! -(password 'dodo')-> <#>ZL:AE:H<#>7d0e3910a7ec91896c04198063994fdf6c1c4a9da2df44ddba5cd1787f6bf73414a2e06d4acbed4c93795d516556b15d25ac0dea2bcfefed6f5caf203a76ef322b3ce9d933242b9ba1a419ab36d4543ff4649539e240de7cca4cb8b9f200e8e0
+  * no-one will know about your secret -(password 'ph0enix')-> <#>R:B:32<#>HEZVS7P6YT5CLQUQ5VWEV3RZ7QGS5V7HWBTMLXLO7X4E32KYQW42F5XSIU5UQNPBG2WZXRAD3HKFK===
+  * Lorem ipsum dolor sit amet, ( ... ) Suspendisse potenti. (this text has 2000 characters) --> The resulted string has 1231 characters with BZ2/ AES/ Base64.
