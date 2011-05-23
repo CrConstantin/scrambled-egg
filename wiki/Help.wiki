@@ -3,31 +3,33 @@
 
 = Introduction =
 
-Scrambled-Egg can help you compress and encrypt your data.<br>
-The data can be : plain text, formatted text, or a binary file (currently not supported from GUI).
-The result can be kept/sent as plain text, or as an image.
+Scrambled-Egg is made for compressing and encrypting your data.<br>
+The input data can be : plain text, formatted text, or a binary file (currently not supported from GUI).<br>
+The result can be kept/sent as printable plain text, or as a little square image.
 
 = Details =
 
-First of all, Scrambled-Egg is not a text editor.<br>
-If you need formatted text, use a text processor, then paste the formatted text in the left text-box.
-Scrambled-Egg supports HTML, so the formatting will be remembered upon encryption/ decryption.
+First of all, Scrambled-Egg *is not* a text editor.<br>
+If you want to use formatted text, write your text in a text processor (Microsoft Word, Open Office, etc), then paste the formatted text in the *left text-box*.<br>
+Scrambled-Egg supports HTML and the formatting will be remembered upon encryption/ decryption.
 
 The original data is scrambled in 3 steps :
-  * Step 1 (pre processing)  : No processing, ZLIB, BZ2, or ROT13
-  * Step 2 (real encryption) : AES, ARC2, Blowfish, CAST, DES3, or No encryption
-  * Step 3 (post processing) : Base64, Base32, HEX, Quopri, String escape, or UU Codec
+  * Step 1 (*pre processing*)  : No processing, ZLIB, BZ2, or ROT13
+  * Step 2 (*real encryption*) : AES, ARC2, Blowfish, CAST, DES3, or No encryption
+  * Step 3 (*post processing*) : Base64, Base32, HEX, Quopri, String escape, or UU Codec
 
-All 3 steps are important, you should use them all.
-The password is optional, and it's used only for step 2 (encryption).
-Step 3 (post processing) is mandatory, the rest can be omitted.
+All 3 steps are important, you _should_ use them all.<br>
+The password is optional, and it's only used in step 2 (encryption).<br>
+Step 3 (post processing) is *required*, the rest are *optional*.
 
 The resulted string contains a _pre/enc/post tag_ in this form:
 "_<#>pre:encryption:post<#>_", where :
  * "_pre_" represents one of the values from Step 1,
  * "_encryption_" is one of the values from Step 2 and
  * "_post_" is a value from Step 3.
-This tag can be deleted when keeping/sending the scrambled data, but it is important if you don't remember, or don't know _how_ to decrypt the data back.<br>
+
+This _pre/enc/post tag_ can be deleted when keeping/sending the scrambled data, but it's important if you don't remember, or don't know _how_ to decrypt the data back !<br>
+<br>
 For example, if someone scrambles the data with BZ2 + DES3 + HEX, and you try to decrypt it with ZLIB + DES3 + HEX, it will fail. You will have to try all combinations of pre/enc/post operations, even if you already know the password !
 
 = Tips =
@@ -39,6 +41,7 @@ For example, if someone scrambles the data with BZ2 + DES3 + HEX, and you try to
 
 = A few examples =
 
-  * you *must* destroy the _evidence_! -(password 'dodo')-> <#>ZL:AE:H<#>7d0e3910a7ec91896c04198063994fdf6c1c4a9da2df44ddba5cd1787f6bf73414a2e06d4acbed4c93795d516556b15d25ac0dea2bcfefed6f5caf203a76ef322b3ce9d933242b9ba1a419ab36d4543ff4649539e240de7cca4cb8b9f200e8e0
+  * you *must* destroy the _evidence_! -(password 'dodo')-> <#>ZL:AE:H<#>7d0e3910a7ec91896c04198063994fdf6c1c4a9da2df44ddba5cd1787f6bf73414a2e06d4acbed4c93795d516556b15d25ac0dea2
+bcfefed6f5caf203a76ef322b3ce9d933242b9ba1a419ab36d4543ff4649539e240de7cca4cb8b9f200e8e0
   * no-one will know about your secret -(password 'ph0enix')-> <#>R:B:32<#>HEZVS7P6YT5CLQUQ5VWEV3RZ7QGS5V7HWBTMLXLO7X4E32KYQW42F5XSIU5UQNPBG2WZXRAD3HKFK===
   * Lorem ipsum dolor sit amet, ( ... ) Suspendisse potenti. (this text has 2000 characters) --> The resulted string has 1231 characters with BZ2/ AES/ Base64.
