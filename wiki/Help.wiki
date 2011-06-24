@@ -10,13 +10,13 @@ The result can be kept/sent as printable plain text, or as a little square image
 = Details =
 
 First of all, Scrambled-Egg *is not* a text editor.<br>
-If you want to use formatted text, write your text in a text processor (Microsoft Word, Open Office, etc), then paste the formatted text in the *left text-box*.<br>
-Scrambled-Egg supports HTML and the formatting will be remembered upon encryption/ decryption.
+If you want to use formatted text, write your text in a text processor (Microsoft Word, Open Office, etc), then paste, or drag and drop the formatted text in the *left text-box*.<br>
+Scrambled-Egg supports HTML and the formatting will be remembered upon encryption/ decryption, if you check the "Formatted text" checkbox. If you don't, the text will be plain-text.
 
 The original data is scrambled in 3 steps :
   * Step 1 (*pre processing*)  : No processing, ZLIB, BZ2, or ROT13
-  * Step 2 (*real encryption*) : AES, ARC2, Blowfish, CAST, DES3, or No encryption
-  * Step 3 (*post processing*) : Base64, Base32, HEX, Quopri, String escape, or UU Codec
+  * Step 2 (*real encryption*) : AES, ARC2, Blowfish, CAST, DES3, RSA, or No encryption
+  * Step 3 (*post processing*) : Base64, Base32, HEX, Quopri, String escape, Json, XML, or UU Codec
 
 All 3 steps are important, you _should_ use them all.<br>
 The password is optional, and it's only used in step 2 (encryption).<br>
@@ -34,9 +34,10 @@ For example, if someone scrambles the data with BZ2 + DES3 + HEX, and you try to
 
 = Tips =
 
-  * Don't use Quopri Codec with binary files (images, music, Doc/Xls files, executables). The result after decoding might be differend from the original file !
-  * Base32 Codec is VERY slow, so don't use it for large files.
+  * _Never ever_ use Quopri Codec with binary files (images, music, Doc/Xls files, executable files). The result after decoding might differ from the original file !
+  * Base32 Codec is VERY slow, so never use it for large files (few MBs).
   * The GUI will freeze for a looong time if you try to encrypt/ decrypt more than 200.000-300.000 characters !
+  * You must type a password in the Password Field, if you want to encrypt your files :) If you don't provide a password, the letter '_X_' is used.
   * The most common passwords are : 111111, 123456, 123456789, Password, iloveyou, princess, rockyou, abc123, Querty. Don't use common passwords for protecting your data.
 
 = A few examples =
