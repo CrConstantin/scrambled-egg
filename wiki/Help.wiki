@@ -42,7 +42,6 @@ For example, if someone scrambles the data with BZ2 + DES3 + HEX, and you try to
 
 = A few examples =
 
-  * you *must* destroy the _evidence_! -(password 'dodo')-> <#>ZL:AE:H<#>7d0e3910a7ec91896c04198063994fdf6c1c4a9da2df44ddba5cd1787f6bf73414a2e06d4acbed4c93795d516556b15d25ac0dea2
-bcfefed6f5caf203a76ef322b3ce9d933242b9ba1a419ab36d4543ff4649539e240de7cca4cb8b9f200e8e0
-  * no-one will know about your secret -(password 'ph0enix')-> <#>R:B:32<#>HEZVS7P6YT5CLQUQ5VWEV3RZ7QGS5V7HWBTMLXLO7X4E32KYQW42F5XSIU5UQNPBG2WZXRAD3HKFK===
+  * you *must* destroy the _evidence_! -(password 'dodo')-> <#>N:AES:64<#>SBGtCtZphIoz9CaUmMhVvCYDoXd7JfU6jzUCFEnNeTM=
+  * no-one will know about your secret -(password 'ph0enix')-> <#>R:B:32<#>QJMR5WVZGBZJFGN4DVB5DOXDXOW5AXTQAKTDSPQ7RJNLPPJHKK3Q73AUBGMH4JJGOFVOFUJT65UU2===
   * Lorem ipsum dolor sit amet, ( ... ) Suspendisse potenti. (this text has 2000 characters) --> The resulted string has 1231 characters with BZ2/ AES/ Base64.
